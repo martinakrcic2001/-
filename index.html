@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Држи се, краљице! 💖</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        roseBg: '#FFF0F5',
+                        warmRed: '#E63946',
+                        softPink: '#FFB6C1',
+                        deepRose: '#D81B60',
+                        pastelPink: '#FFD1DC',
+                        cozyWarmth: '#FF758F'
+                    },
+                    fontFamily: {
+                        fredoka: ['Fredoka', 'sans-serif'],
+                        nunito: ['Nunito', 'sans-serif']
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'bounce-gentle': 'bounceGentle 2s infinite',
+                        'warm-glow': 'warmGlow 2s ease-in-out infinite alternate'
+                    },
+                    keyframes: {
+                        bounceGentle: {
+                            '0%, 100%': { transform: 'translateY(-4px)' },
+                            '50%': { transform: 'translateY(4px)' }
+                        },
+                        warmGlow: {
+                            '0%': { boxShadow: '0 0 15px rgba(230, 57, 70, 0.2)' },
+                            '100%': { boxShadow: '0 0 35px rgba(230, 57, 70, 0.6)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #FFF0F5 0%, #FFE4E1 50%, #FFD1DC 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Ефекат плутајућих розе <3 које крећу искључиво са дна ка врху */
+        .bg-floating-heart {
+            position: fixed;
+            bottom: -50px;
+            color: rgba(216, 27, 96, 0.45);
+            font-family: 'Fredoka', cursive, sans-serif;
+            font-weight: 700;
+            pointer-events: none;
+            user-select: none;
+            z-index: 0;
+            animation: floatUp linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.85;
+            }
+            90% {
+                opacity: 0.85;
+            }
+            100% {
+                transform: translateY(-115vh) rotate(30deg);
+                opacity: 0;
+            }
+        }
+
+        .termofor-active {
+            background: linear-gradient(135deg, #ff758f 0%, #ff4d6d 100%) !important;
+            box-shadow: 0 0 30px rgba(255, 77, 109, 0.6);
+            transform: scale(1.02);
+        }
+
+        .steam {
+            position: absolute;
+            height: 15px;
+            width: 15px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.6);
+            animation: steamFade 2s infinite ease-out;
+        }
+
+        @keyframes steamFade {
+            0% { transform: translateY(0) scale(0.8); opacity: 0.8; }
+            100% { transform: translateY(-40px) scale(1.8); opacity: 0; }
+        }
+
+        .checkbox-custom:checked + div {
+            background-color: #D81B60;
+            border-color: #D81B60;
+        }
+
+        .checkbox-custom:checked + div i {
+            display: block;
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-between p-4 sm:p-6 text-slate-800">
+
+    <!-- ПЛУТАЈУЋА РОЗЕ СРЦА <3 СИЛАЗЕ С ДНА ЕКРАНА -->
+    <div class="bg-floating-heart text-2xl" style="left: 4%; animation-duration: 9s; animation-delay: 0s;">&lt;3</div>
+    <div class="bg-floating-heart text-4xl" style="left: 12%; animation-duration: 13s; animation-delay: 3s;">&lt;3</div>
+    <div class="bg-floating-heart text-xl" style="left: 20%; animation-duration: 7s; animation-delay: 1s;">&lt;3</div>
+    <div class="bg-floating-heart text-3xl" style="left: 28%; animation-duration: 10s; animation-delay: 5s;">&lt;3</div>
+    <div class="bg-floating-heart text-5xl" style="left: 36%; animation-duration: 14s; animation-delay: 2s;">&lt;3</div>
+    <div class="bg-floating-heart text-2xl" style="left: 44%; animation-duration: 8s; animation-delay: 6s;">&lt;3</div>
+    <div class="bg-floating-heart text-4xl" style="left: 52%; animation-duration: 11s; animation-delay: 0.5s;">&lt;3</div>
+    <div class="bg-floating-heart text-xl" style="left: 60%; animation-duration: 9s; animation-delay: 4s;">&lt;3</div>
+    <div class="bg-floating-heart text-3xl" style="left: 68%; animation-duration: 12s; animation-delay: 1.5s;">&lt;3</div>
+    <div class="bg-floating-heart text-5xl" style="left: 76%; animation-duration: 15s; animation-delay: 3.5s;">&lt;3</div>
+    <div class="bg-floating-heart text-2xl" style="left: 84%; animation-duration: 8.5s; animation-delay: 5.5s;">&lt;3</div>
+    <div class="bg-floating-heart text-4xl" style="left: 92%; animation-duration: 10.5s; animation-delay: 2.5s;">&lt;3</div>
+    <div class="bg-floating-heart text-3xl" style="left: 16%; animation-duration: 11.5s; animation-delay: 7s;">&lt;3</div>
+    <div class="bg-floating-heart text-2xl" style="left: 48%; animation-duration: 9.5s; animation-delay: 8s;">&lt;3</div>
+    <div class="bg-floating-heart text-4xl" style="left: 80%; animation-duration: 13.5s; animation-delay: 6.5s;">&lt;3</div>
+
+    <!-- Главни Контејнер -->
+    <main class="w-full max-w-md mx-auto my-auto space-y-5 relative z-10">
+
+        <!-- Заглавље Са Поруком -->
+        <div class="bg-white/80 backdrop-blur-md rounded-3xl p-6 text-center border-2 border-softPink/50 shadow-xl relative overflow-hidden">
+            <div class="absolute -top-6 -right-6 text-rose-200 text-7xl opacity-40 select-none">🌸</div>
+            <div class="absolute -bottom-6 -left-6 text-rose-200 text-7xl opacity-40 select-none">🧸</div>
+
+            <span class="inline-block bg-warmRed/10 text-warmRed font-extrabold px-4 py-1.5 rounded-full text-sm uppercase tracking-wider mb-3">
+                СОС Зона Подршке 🩹
+            </span>
+
+            <h1 class="font-fredoka text-2xl sm:text-3xl font-bold text-deepRose leading-tight mb-2">
+                Јебем ти женско,<br><span class="text-warmRed drop-shadow-sm">али издржаћеш!</span>
+            </h1>
+
+            <p class="text-base text-gray-700 font-medium leading-relaxed">
+                Знам да боли ужасно, али подсетник: <br> проћи ће!
+            </p>
+        </div>
+
+        <!-- ВИРТУЕЛНИ ТЕРМОФОР -->
+        <div id="termoforCard" class="bg-white/80 backdrop-blur-md rounded-3xl p-5 border-2 border-softPink/50 shadow-lg text-center transition-all duration-500 relative">
+            <div id="steamContainer" class="hidden">
+                <div class="steam" style="top: 20px; left: 45%;"></div>
+                <div class="steam" style="top: 15px; left: 52%; animation-delay: 0.5s;"></div>
+            </div>
+
+            <div class="flex items-center justify-between mb-3">
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl">🔥</span>
+                    <h2 class="font-fredoka text-xl font-bold text-gray-800">Виртуелни Термофор</h2>
+                </div>
+                <span id="termoforStatus" class="text-sm font-bold px-3 py-1 rounded-full bg-gray-100 text-gray-600">
+                    Хладно ❄️
+                </span>
+            </div>
+
+            <p class="text-sm text-gray-600 mb-4 text-left">Притисни дугме да загрејеш стомак и створиш топлу атмосферу олакшања.</p>
+
+            <button id="termoforBtn" onclick="toggleTermofor()" class="w-full py-3.5 px-4 bg-gradient-to-r from-softPink to-pastelPink hover:from-rose-300 hover:to-softPink text-deepRose font-bold rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 active:scale-95 text-base">
+                <i class="fa-solid font-bold fa-temperature-arrow-up text-lg"></i>
+                <span id="termoforBtnText">Укључи Грејање ♨️</span>
+            </button>
+        </div>
+
+        <!-- ГЕНЕРАТОР ПОРУКА АФЕКЦИЈЕ -->
+        <div class="bg-white/80 backdrop-blur-md rounded-3xl p-5 border-2 border-softPink/50 shadow-lg">
+            <div class="flex items-center justify-between mb-2">
+                <h2 class="font-fredoka text-xl font-bold text-gray-800 flex items-center gap-2">
+                    <span>💌</span> Доза Подршке
+                </h2>
+                <button onclick="newQuote()" class="text-sm text-deepRose font-bold hover:underline flex items-center gap-1">
+                    <i class="fa-solid fa-rotate-right"></i> Ново
+                </button>
+            </div>
+
+            <div class="bg-roseBg/80 p-4 rounded-2xl border border-softPink/40 min-h-[80px] flex items-center justify-center text-center">
+                <p id="quoteText" class="text-base font-bold text-deepRose transition-opacity duration-300">
+                    "Твоје тело тренутно ради чуда. Одмори се и заборави на цео свет!" ✨
+                </p>
+            </div>
+        </div>
+
+        <!-- ЧЕК-ЛИСТА ЗА ПРЕЖИВЉАВАЊЕ -->
+        <div class="bg-white/80 backdrop-blur-md rounded-3xl p-5 border-2 border-softPink/50 shadow-lg space-y-3">
+            <h2 class="font-fredoka text-xl font-bold text-gray-800 flex items-center gap-2">
+                <span>📋</span> Чек-листа за Преживљавање
+            </h2>
+
+            <div class="space-y-2.5">
+                <label class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-roseBg/50 cursor-pointer transition-colors">
+                    <input type="checkbox" class="hidden checkbox-custom" checked>
+                    <div class="w-6 h-6 border-2 border-deepRose rounded-md flex items-center justify-center text-white transition-all shrink-0">
+                        <i class="fa-solid fa-check text-sm hidden"></i>
+                    </div>
+                    <span class="text-sm sm:text-base font-semibold text-gray-800">Попиј лек / топао чај одмах ☕</span>
+                </label>
+
+                <label class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-roseBg/50 cursor-pointer transition-colors">
+                    <input type="checkbox" class="hidden checkbox-custom">
+                    <div class="w-6 h-6 border-2 border-deepRose rounded-md flex items-center justify-center text-white transition-all shrink-0">
+                        <i class="fa-solid fa-check text-sm hidden"></i>
+                    </div>
+                    <span class="text-sm sm:text-base font-semibold text-gray-800">Обуци најширу и најудобнију тренерку 🛋️</span>
+                </label>
+
+                <label class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-roseBg/50 cursor-pointer transition-colors">
+                    <input type="checkbox" class="hidden checkbox-custom">
+                    <div class="w-6 h-6 border-2 border-deepRose rounded-md flex items-center justify-center text-white transition-all shrink-0">
+                        <i class="fa-solid fa-check text-sm hidden"></i>
+                    </div>
+                    <span class="text-sm sm:text-base font-semibold text-gray-800">Пусти омиљену серију / филм 🎬</span>
+                </label>
+
+                <label class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-roseBg/50 cursor-pointer transition-colors">
+                    <input type="checkbox" class="hidden checkbox-custom">
+                    <div class="w-6 h-6 border-2 border-deepRose rounded-md flex items-center justify-center text-white transition-all shrink-0">
+                        <i class="fa-solid fa-check text-sm hidden"></i>
+                    </div>
+                    <span class="text-sm sm:text-base font-semibold text-gray-800">Заборави на све обавезе (званично оправдано) 🛑</span>
+                </label>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="mt-8 mb-2 text-center text-base sm:text-lg font-bold text-deepRose/90 drop-shadow-sm relative z-10">
+        Направљено с љубављу да лакше прође! 🌸
+    </footer>
+
+    <!-- ЛОГИКА СКРИПТЕ -->
+    <script>
+        // База Подржавајућих Порука
+        const quotes = [
+            "Твоје тело тренутно ради чуда. Одмори се и заборави на цео свет! ✨",
+            "Заслужујеш сву чоколаду и грицкалице овог света данас! Без гриже савести. 🍩",
+            "Званична дијагноза: Потребно лежање, ћебенце и мажење! 🧸️",
+            "Ако неко данас смара — само му реци да немаш живаца и у праву си! 🙅‍♀️",
+            "Краљице, одмори. Свет може да сачека пар дана! 👑",
+            "Топао чај, лек и ћебе су твоји најбољи пријатељи данас. 🌸"
+        ];
+
+        let currentQuoteIndex = 0;
+
+        function newQuote() {
+            const quoteEl = document.getElementById('quoteText');
+            quoteEl.style.opacity = '0';
+
+            setTimeout(() => {
+                currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
+                quoteEl.innerText = quotes[currentQuoteIndex];
+                quoteEl.style.opacity = '1';
+            }, 300);
+        }
+
+        // Логика за Виртуелни Термофор
+        let termoforOn = false;
+
+        function toggleTermofor() {
+            termoforOn = !termoforOn;
+            const card = document.getElementById('termoforCard');
+            const status = document.getElementById('termoforStatus');
+            const btnText = document.getElementById('termoforBtnText');
+            const steam = document.getElementById('steamContainer');
+
+            if (termoforOn) {
+                card.classList.add('termofor-active');
+                card.classList.add('bg-rose-500');
+                status.innerText = "Топло & Удобно ♨️";
+                status.className = "text-sm font-bold px-3 py-1 rounded-full bg-white text-warmRed animate-pulse";
+                btnText.innerText = "Искључи Термофор ❄️";
+                steam.classList.remove('hidden');
+
+                // Лагане конфете при паљењу термофора
+                confetti({
+                    particleCount: 25,
+                    spread: 60,
+                    origin: { y: 0.7 },
+                    colors: ['#FF758F', '#FF4D6D', '#FFF0F5']
+                });
+            } else {
+                card.classList.remove('termofor-active');
+                card.classList.remove('bg-rose-500');
+                status.innerText = "Хладно ❄️";
+                status.className = "text-sm font-bold px-3 py-1 rounded-full bg-gray-100 text-gray-600";
+                btnText.innerText = "Укључи Грејање ♨️";
+                steam.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
